@@ -1,5 +1,49 @@
+@import url(https://fonts.googleapis.com/css?family=Arimo:regular);
 
-$fontfamily: "Tahoma", sans-serif;
+$fontfamily: "Arimo", sans-serif;
 
 @import "_nullstyle";
 
+body {}
+
+.header {
+
+	&__title {}
+
+	&__subtitle {}
+}
+
+.page {
+
+	&__title {}
+}
+
+.receipt {}
+
+.form {
+
+	&__input {}
+
+	&__addBtn {}
+}
+
+.movies {
+
+	&__list {}
+
+	&__list-item {}
+}
+
+.movie {
+
+	&__checkbox {}
+
+	&__deleteBtn {}
+}
+
+.footer {
+
+	&__telegram {}
+
+	&__cr {}
+}

@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Arimo:regular);
 /*Обнуление*/
 * {
   padding: 0;
@@ -28,7 +29,7 @@ html, body {
 }
 
 body {
-  font-family: "Tahoma", sans-serif;
+  font-family: "Arimo", sans-serif;
   line-height: 1;
   font-size: 14px;
   -ms-text-size-adjust: 100%;
@@ -37,7 +38,7 @@ body {
 }
 
 input, button, textarea {
-  font-family: "Tahoma", sans-serif;
+  font-family: "Arimo", sans-serif;
 }
 
 input::-ms-clear {
