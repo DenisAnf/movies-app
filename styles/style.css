@@ -84,3 +84,31 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 /*--------------------*/
+body {
+  font-family: "Arimo", sans-serif;
+  background: #181818;
+  color: #F3F6F9;
+}
+
+.container {
+  max-width: 930px;
+  margin: 0 auto;
+  padding: 0 70px;
+}
+
+.header {
+  margin: 80px 0 20px;
+}
+.header__wrapper {
+  display: flex;
+}
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  padding: 15px;
+  gap: 15px 50px;
+  color: rgba(255, 255, 255, 0.5);
+}

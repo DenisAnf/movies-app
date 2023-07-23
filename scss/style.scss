@@ -4,9 +4,23 @@ $fontfamily: "Arimo", sans-serif;
 
 @import "_nullstyle";
 
-body {}
+body {
+	font-family: $fontfamily;
+	background: #181818;
+	color: #F3F6F9;
+}
+
+.container {
+	max-width: 930px;
+	margin: 0 auto;
+	padding: 0 70px;
+}
 
 .header {
+	margin: 80px 0 20px;
+	&__wrapper {
+		display: flex;
+	}
 
 	&__title {}
 
@@ -42,6 +56,14 @@ body {}
 }
 
 .footer {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	margin-top: 20px;
+	padding: 15px;
+	gap: 15px 50px;
+	color: rgba(255, 255, 255, 0.5);
 
 	&__telegram {}
 
