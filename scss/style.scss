@@ -50,7 +50,14 @@ body {
 
 .movie {
 
-	&__checkbox {}
+	&__checkbox {
+
+		&:checked {
+			& + span {
+				text-decoration: line-through;
+			}
+		}
+	}
 
 	&__deleteBtn {}
 }

@@ -102,6 +102,9 @@ body {
 .header__wrapper {
   display: flex;
 }
+.movie__checkbox:checked + span {
+  text-decoration: line-through;
+}
 .footer {
   display: flex;
   flex-wrap: wrap;
