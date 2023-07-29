@@ -165,15 +165,22 @@ body {
   width: 100%;
   min-height: 71px;
   margin-bottom: 3px;
-  padding: 0 20px;
+  padding: 20px;
   border-radius: 10px;
   background: #3A3939;
 }
 
-.movie__checkbox:checked + span {
+.movie__checkbox {
+  display: none;
+}
+.movie__checkbox:checked + .movie__title {
   text-decoration: line-through;
 }
+.movie__fakecheckbox {
+  display: inline-block;
+}
 .movie__title {
+  width: 90%;
   font-size: 20px;
   line-height: normal;
   letter-spacing: -0.4px;

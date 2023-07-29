@@ -100,7 +100,7 @@ body {
 		width: 100%;
 		min-height: 71px;
 		margin-bottom: 3px;
-		padding: 0 20px;
+		padding: 20px;
 		border-radius: 10px;
 		background: #3A3939;
 	}
@@ -109,15 +109,21 @@ body {
 .movie {
 
 	&__checkbox {
+		display: none;
 
 		&:checked {
-			& + span {
+			& + .movie__title {
 				text-decoration: line-through;
 			}
 		}
 	}
 
+	&__fakecheckbox {
+		display: inline-block;
+	}
+
 	&__title {
+		width: 90%;
 		font-size: 20px;
 		line-height: normal;
 		letter-spacing: -0.4px;
