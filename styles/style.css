@@ -163,7 +163,7 @@ body {
 }
 @media (max-width: 949px) {
   .page__wrapper {
-    max-height: calc(0.7726550079 * 100vw + 252.7503974563px);
+    max-height: calc(0.6613672496 * 100vw + 358.3624801272px);
     border-radius: calc(0.0158982512 * 100vw + 4.9125596184px);
     padding: calc(0.079491256 * 100vw + -5.4372019078px);
   }

@@ -88,7 +88,7 @@ body {
 		overflow-y: auto;
 
 		@media (max-width: 949px) {
-			max-height: calcSize(500, 986, 320, 949);
+			max-height: calcSize(570, 986, 320, 949);
 			border-radius: calcSize(10, 20, 320, 949);
 			padding: calcSize(20, 70, 320, 949);
 		}
