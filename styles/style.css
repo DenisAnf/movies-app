@@ -213,6 +213,9 @@ body {
     line-height: calc(0.0349761526 * 100vw + 28.8076311606px);
   }
 }
+.form__input:focus {
+  border-color: #6532F8;
+}
 .form__addBtn {
   height: 62px;
   width: 62px;
@@ -226,6 +229,10 @@ body {
     width: calc(0.0349761526 * 100vw + 28.8076311606px);
     background-size: calc(0.0174880763 * 100vw + 14.4038155803px);
   }
+}
+.form__addBtn:hover {
+  background-size: 35px;
+  transition: background-size 100ms linear;
 }
 
 .movies__list {
@@ -263,6 +270,7 @@ body {
   width: 100%;
   align-items: center;
   gap: 20px;
+  cursor: pointer;
 }
 @media (max-width: 949px) {
   .movie {
@@ -311,7 +319,6 @@ body {
 }
 @media (max-width: 949px) {
   .movie__deleteBtn {
-    height: calc(0.0111287758 * 100vw + 12.4387917329px);
     width: calc(0.0111287758 * 100vw + 12.4387917329px);
   }
 }

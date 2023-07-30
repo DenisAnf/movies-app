@@ -147,6 +147,10 @@ body {
 			font-size: calcSize(20, 30, 320, 949);
 			line-height: calcSize(40, 62, 320, 949);
 		}
+
+		&:focus {
+			border-color: #6532F8;
+		}
 	}
 
 	&__addBtn {
@@ -160,6 +164,11 @@ body {
 			height: calcSize(40, 62, 320, 949);
 			width: calcSize(40, 62, 320, 949);
 			background-size: calcSize(20, 31, 320, 949);
+		}
+
+		&:hover {
+			background-size: 35px;
+			transition: background-size 100ms linear;
 		}
 	}
 }
@@ -203,6 +212,7 @@ body {
 	width: 100%;
 	align-items: center;
 	gap: 20px;
+	cursor: pointer;
 
 	@media (max-width: 949px) {
 		gap: calcSize(10, 20, 320, 949);
@@ -253,8 +263,8 @@ body {
 		align-self: stretch;
 		width: 23px;
 		background: url('../resourses/img/icon/close.svg') center/contain no-repeat;
+		
 		@media (max-width: 949px) {
-			height: calcSize(16, 23, 320, 949);
 			width: calcSize(16, 23, 320, 949);
 		}
 	}
