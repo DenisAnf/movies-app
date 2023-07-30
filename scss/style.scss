@@ -250,7 +250,7 @@ body {
 	}
 
 	&__deleteBtn {
-		height: 23px;
+		align-self: stretch;
 		width: 23px;
 		background: url('../resourses/img/icon/close.svg') center/contain no-repeat;
 		@media (max-width: 949px) {
