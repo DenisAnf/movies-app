@@ -299,7 +299,7 @@ body {
 }
 @media (max-width: 949px) {
   .movie__title {
-    width: calc(0.0238473768 * 100vw + 67.3688394277%);
+    width: calcSizePercent(75, 90, 320, 949);
     font-size: calc(0.0063593005 * 100vw + 13.9650238474px);
     letter-spacing: calc(-0.0004769475 * 100vw + 0.0526232114px);
   }

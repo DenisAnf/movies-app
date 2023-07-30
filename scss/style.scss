@@ -11,16 +11,6 @@ $fontfamily: "Arimo", sans-serif;
 	@return calc(#{$k} * 100vw + #{$b});
 }
 
-@function calcSizePercent($f-min, $f-max, $w-min, $w-max) {
-	$k: ($f-max - $f-min)/($w-max - $w-min);
-	$b: $f-min - $k * $w-min;
-
-	$b: $b * 1%;
-
-	@return calc(#{$k} * 100vw + #{$b});
-}
-
-
 @import "_nullstyle";
 
 body {
