@@ -88,7 +88,7 @@ body {
   font-family: "Arimo", sans-serif;
   background: #181818;
   color: #F3F6F9;
-  overflow-wrap: break-word;
+  overflow-wrap: anywhere;
 }
 
 .container {
@@ -194,6 +194,13 @@ body {
   line-height: 20px;
   color: red;
 }
+@media (max-width: 949px) {
+  .receipt__error {
+    height: calc(0.0095389507 * 100vw + 10.9475357711px);
+    font-size: calc(0.0063593005 * 100vw + 7.9650238474px);
+    line-height: calc(0.0095389507 * 100vw + 10.9475357711px);
+  }
+}
 
 .form {
   display: flex;
@@ -202,7 +209,7 @@ body {
 }
 @media (max-width: 949px) {
   .form {
-    margin-bottom: calc(0.0317965024 * 100vw + 9.8251192369px);
+    margin-bottom: calc(0.0079491256 * 100vw + 2.4562798092px);
     gap: calc(0.0158982512 * 100vw + 4.9125596184px);
   }
 }

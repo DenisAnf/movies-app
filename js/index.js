@@ -1,19 +1,15 @@
 const filmNameNode = document.querySelector('#filmName');
 const filmAddButton = document.querySelector('#filmAddButton');
 const filmErrorNode = document.querySelector('#filmError');
-const moviesOutputNode = document.querySelector('#movies');
+const filmsOutputNode = document.querySelector('#movies');
 
-const LIMIT_LENGHT_FILM_NAME = 130;
+const LIMIT_LENGTH_FILM_NAME = 130;
 
 let filmCatalog = [];
 
 const reg = /\s/g;
 
-
-//! ФУНКЦИИ ------------------------------------------------
-
 function Film(name) {
-	//this.id = Math.random();
 	this.name = name;
 	this.check = 'unchecked';
 };
@@ -30,7 +26,7 @@ const addFilmToCatalog = (film) => filmCatalog.push(film);
 const getFilmCatalog = () => filmCatalog;
 
 const renderFilmCatalog = () => {
-	moviesOutputNode.innerHTML = '';
+	filmsOutputNode.innerHTML = '';
 
 	const catalogContainer = document.createElement('ul');
 	catalogContainer.className = 'movies__list';
@@ -66,22 +62,66 @@ const renderFilmCatalog = () => {
 		catalogElLabel.appendChild(catalogElDeleteBtn);
 
 		catalogContainer.appendChild(catalogEl);
+
+		catalogElCheckbox.addEventListener('click', () => (element.check === 'unchecked') ? element.check = 'checked' : element.check = 'unchecked');
+
+		catalogElDeleteBtn.addEventListener('click', () => {
+			filmCatalog.splice(index, 1);
+			renderFilmCatalog();
+		});
 	});
 
-	moviesOutputNode.appendChild(catalogContainer);
+	filmsOutputNode.appendChild(catalogContainer);
+};
+
+const clearFilmNode = () => filmNameNode.value = '';
+
+const validationFilmNameFromUser = () => {
+	const filmFromUser = filmNameNode.value;
+	const lengthFilmFromUser = filmFromUser.length;
+	const filmFromUserWithoutSpace = filmFromUser.replace(reg, '');
+	const lengthFilmFromUserWithoutSpace = filmFromUserWithoutSpace.length;
+
+	if (!filmFromUser || lengthFilmFromUserWithoutSpace == 0) {
+		filmErrorNode.textContent = 'Введите название фильма';
+		clearFilmNode();
+		return true;
+	};
+
+	if (lengthFilmFromUser > LIMIT_LENGTH_FILM_NAME) {
+		filmErrorNode.textContent = `Не бывает фильмов длинее 130 символов (${lengthFilmFromUser}/${LIMIT_LENGTH_FILM_NAME})`;
+		return true;
+	};
+
+	filmErrorNode.textContent = '';
+	return false;
 };
 
 const addMovieHandler = () => {
+	if (validationFilmNameFromUser()) {return};
+
 	const movie = getFilmFromUser();
-	
+
 	addFilmToCatalog(movie);
 	renderFilmCatalog();
+	clearFilmNode();
 };
 
+const addMovieByEnter = (event) => {
+	if (event.keyCode === 13) {
+		event.preventDefault();
+		addMovieHandler();
+		filmNameNode.focus();
+	};
+};
 
-//! ОБРАБОТЧИКИ ------------------------------------------------
+const init = () => {
+	filmNameNode.focus();
+};
+init();
 
 filmAddButton.addEventListener('click', addMovieHandler);
+filmNameNode.addEventListener('keydown', addMovieByEnter);
 
 
 

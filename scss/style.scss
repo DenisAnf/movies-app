@@ -17,7 +17,8 @@ body {
 	font-family: $fontfamily;
 	background: #181818;
 	color: #F3F6F9;
-	overflow-wrap: break-word;
+	overflow-wrap: anywhere;
+	//white-space: pre-line;
 }
 
 .container {
@@ -131,6 +132,12 @@ body {
 		font-size: 14px;
 		line-height: 20px;
 		color: red;
+
+		@media (max-width: 949px) {
+			height: calcSize(14, 20, 320, 949);
+			font-size: calcSize(10, 14, 320, 949);
+			line-height: calcSize(14, 20, 320, 949);
+		}
 	}
 }
 
@@ -140,7 +147,7 @@ body {
 	margin-bottom: 10px;
 
 	@media (max-width: 949px) {
-		margin-bottom: calcSize(20, 40, 320, 949);
+		margin-bottom: calcSize(5, 10, 320, 949);
 		gap: calcSize(10, 20, 320, 949);
 	}
 
