@@ -4,10 +4,27 @@ const filmErrorNode = document.querySelector('#filmError');
 const filmsOutputNode = document.querySelector('#movies');
 
 const LIMIT_LENGTH_FILM_NAME = 130;
+const REG = /\s/g;
+const STORAGE_LABEL_MOVIES = 'movies';
 
-let filmCatalog = [];
+let filmCatalog;
 
-const reg = /\s/g;
+const saveFilmsToLocalStorage = () => {
+	const filmsString = JSON.stringify(filmCatalog);
+	localStorage.setItem(STORAGE_LABEL_MOVIES, filmsString);
+}
+
+const getFilmsFromLocalStorage = () => {
+	const filmsFromLocalStorageString = localStorage.getItem(STORAGE_LABEL_MOVIES);
+	const filmsFromLocalStorage = JSON.parse(filmsFromLocalStorageString);
+
+	if (!filmsFromLocalStorage) {
+		filmCatalog = [];
+		return;
+	}
+
+	filmCatalog = filmsFromLocalStorage;
+}
 
 function Film(name) {
 	this.name = name;
@@ -63,10 +80,18 @@ const renderFilmCatalog = () => {
 
 		catalogContainer.appendChild(catalogEl);
 
-		catalogElCheckbox.addEventListener('click', () => (element.check === 'unchecked') ? element.check = 'checked' : element.check = 'unchecked');
+		catalogElCheckbox.addEventListener('click', () => {
+			if (element.check === 'unchecked') {
+				element.check = 'checked';
+			} else {
+				element.check = 'unchecked';
+			}
+			saveFilmsToLocalStorage();
+		});
 
 		catalogElDeleteBtn.addEventListener('click', () => {
 			filmCatalog.splice(index, 1);
+			saveFilmsToLocalStorage();
 			renderFilmCatalog();
 		});
 	});
@@ -79,7 +104,7 @@ const clearFilmNode = () => filmNameNode.value = '';
 const validationFilmNameFromUser = () => {
 	const filmFromUser = filmNameNode.value;
 	const lengthFilmFromUser = filmFromUser.length;
-	const filmFromUserWithoutSpace = filmFromUser.replace(reg, '');
+	const filmFromUserWithoutSpace = filmFromUser.replace(REG, '');
 	const lengthFilmFromUserWithoutSpace = filmFromUserWithoutSpace.length;
 
 	if (!filmFromUser || lengthFilmFromUserWithoutSpace == 0) {
@@ -103,6 +128,7 @@ const addMovieHandler = () => {
 	const movie = getFilmFromUser();
 
 	addFilmToCatalog(movie);
+	saveFilmsToLocalStorage();
 	renderFilmCatalog();
 	clearFilmNode();
 };
@@ -116,6 +142,8 @@ const addMovieByEnter = (event) => {
 };
 
 const init = () => {
+	getFilmsFromLocalStorage();
+	renderFilmCatalog();
 	filmNameNode.focus();
 };
 init();
