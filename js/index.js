@@ -4,13 +4,13 @@ const filmErrorNode = document.querySelector('#filmError');
 const filmsOutputNode = document.querySelector('#movies');
 
 const LIMIT_LENGTH_FILM_NAME = 130;
-const REG = /\s/g;
+const REG_SPACES_PUNСTUATION_MARKS = /[ \t\r\n\p{P}\s]/gu;
 const STORAGE_LABEL_MOVIES = 'movies';
 
-let filmCatalog;
+let films = [];
 
 const saveFilmsToLocalStorage = () => {
-	const filmsString = JSON.stringify(filmCatalog);
+	const filmsString = JSON.stringify(films);
 	localStorage.setItem(STORAGE_LABEL_MOVIES, filmsString);
 }
 
@@ -18,12 +18,10 @@ const getFilmsFromLocalStorage = () => {
 	const filmsFromLocalStorageString = localStorage.getItem(STORAGE_LABEL_MOVIES);
 	const filmsFromLocalStorage = JSON.parse(filmsFromLocalStorageString);
 
-	if (!filmsFromLocalStorage) {
-		filmCatalog = [];
-		return;
+	if (Array.isArray(filmsFromLocalStorage)) {
+		films = filmsFromLocalStorage;
+		
 	}
-
-	filmCatalog = filmsFromLocalStorage;
 }
 
 function Film(name) {
@@ -38,17 +36,17 @@ const getFilmFromUser = () => {
 	return film;
 };
 
-const addFilmToCatalog = (film) => filmCatalog.push(film);
+const addFilmToCatalog = (film) => films.push(film);
 
-const getFilmCatalog = () => filmCatalog;
+const getfilms = () => films;
 
-const renderFilmCatalog = () => {
+const renderFilms = () => {
 	filmsOutputNode.innerHTML = '';
 
 	const catalogContainer = document.createElement('ul');
 	catalogContainer.className = 'movies__list';
 
-	const catalog = getFilmCatalog();
+	const catalog = getfilms();
 
 	catalog.forEach((element, index) => {
 		const catalogEl = document.createElement('li');
@@ -90,9 +88,9 @@ const renderFilmCatalog = () => {
 		});
 
 		catalogElDeleteBtn.addEventListener('click', () => {
-			filmCatalog.splice(index, 1);
+			films.splice(index, 1);
 			saveFilmsToLocalStorage();
-			renderFilmCatalog();
+			renderFilms();
 		});
 	});
 
@@ -104,17 +102,19 @@ const clearFilmNode = () => filmNameNode.value = '';
 const validationFilmNameFromUser = () => {
 	const filmFromUser = filmNameNode.value;
 	const lengthFilmFromUser = filmFromUser.length;
-	const filmFromUserWithoutSpace = filmFromUser.replace(REG, '');
+	const filmFromUserWithoutSpace = filmFromUser.replace(REG_SPACES_PUNСTUATION_MARKS, '');
 	const lengthFilmFromUserWithoutSpace = filmFromUserWithoutSpace.length;
 
 	if (!filmFromUser || lengthFilmFromUserWithoutSpace == 0) {
 		filmErrorNode.textContent = 'Введите название фильма';
 		clearFilmNode();
+		filmNameNode.focus();
 		return true;
 	};
 
 	if (lengthFilmFromUser > LIMIT_LENGTH_FILM_NAME) {
 		filmErrorNode.textContent = `Не бывает фильмов длинее 130 символов (${lengthFilmFromUser}/${LIMIT_LENGTH_FILM_NAME})`;
+		filmNameNode.focus();
 		return true;
 	};
 
@@ -123,13 +123,13 @@ const validationFilmNameFromUser = () => {
 };
 
 const addMovieHandler = () => {
-	if (validationFilmNameFromUser()) {return};
+	if (validationFilmNameFromUser()) return;
 
 	const movie = getFilmFromUser();
 
 	addFilmToCatalog(movie);
 	saveFilmsToLocalStorage();
-	renderFilmCatalog();
+	renderFilms();
 	clearFilmNode();
 };
 
@@ -143,7 +143,7 @@ const addMovieByEnter = (event) => {
 
 const init = () => {
 	getFilmsFromLocalStorage();
-	renderFilmCatalog();
+	renderFilms();
 	filmNameNode.focus();
 };
 init();
